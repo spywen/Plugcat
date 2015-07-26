@@ -1,0 +1,8 @@
+#plugcat-core
+plugcat-core/node_modules
+plugcat-core/logs
+plugcat-core/dist
+
+#plugcat-ui
+plugcat-ui/node_modules
+plugcat-ui/bower_components

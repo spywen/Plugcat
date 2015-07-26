@@ -1,0 +1,52 @@
+{
+  "name": "plugcat-ui",
+  "version": "0.0.0",
+  "authors": [
+    "Laurent <spywen@hotmail.fr>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.3",
+    "angular-route": "1.4.3",
+    "angular-material": "0.10.0"
+  },
+  "overrides": {
+    "angular": {
+      "main": {
+        "dev": "angular.js",
+        "prod": [
+          "angular.min.js",
+          "angular.min.js.map"
+        ]
+      }
+    },
+    "angular-material": {
+      "main": {
+        "dev": [
+          "angular-material.js",
+          "angular-material.css"
+        ],
+        "prod": [
+          "angular-material.min.js",
+          "angular-material.min.css"
+        ]
+      }
+    },
+    "angular-route": {
+      "main": {
+        "dev": "angular-route.js",
+        "prod": [
+          "angular-route.min.js",
+          "angular-route.min.js.map"
+        ]
+      }
+    }
+  }
+}
