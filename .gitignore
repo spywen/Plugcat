@@ -6,3 +6,4 @@ plugcat-core/dist
 #plugcat-ui
 plugcat-ui/node_modules
 plugcat-ui/bower_components
+plugcat-ui/coverage

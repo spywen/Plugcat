@@ -1,20 +1,28 @@
-<div id="room">
+<div id="room" ng-init='joinRoom()' ng-keypress='keyPressed()'>
 	<h2 class="md-display-3">{{room.name}}</h2>
 
 	<div layout="row">
 		<div flex="75">
 			<div layout="column" class='chat' layout-padding>
 				<div flex layout='column'>
-					<div ng-repeat='message in room.messages'>
-						<div class='message' ng-class='message.owner'>{{message.content}}</div>
+					<div class='message' ng-repeat='message in room.messages'>
+						<div flex layout='column'>
+							<div>
+								<div class='content' ng-class='message.owner'>{{message.content}}</div>
+							</div>
+							<div class='date'>
+								<span class='hour'>{{message.hour}}</span>
+								<span class='day'>{{message.day}}</span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div flex class="roomSelection" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
 					<md-input-container flex>
 						<label>Send a message</label>
-						<input ng-model="newMessageContent">
+						<input class='messageInput' ng-model="newMessageContent" autofocus="autofocus">
 					</md-input-container>
-				    <md-button class="md-raised md-primary" ng-click="sendMessage()">Send</md-button>
+				    <md-button class="md-raised md-primary" ng-click="sendMessage()" ng-disabled='newMessageContent.length === 0'>Send</md-button>
 				</div>
 			</div>
 		</div>

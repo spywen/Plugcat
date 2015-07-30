@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -26,5 +23,18 @@
     "gulp-uglify": "1.2.0",
     "main-bower-files": "2.9.0",
     "yargs": "3.15.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "2.3.4",
+    "karma": "0.13.3",
+    "karma-cli": "0.1.0",
+    "karma-coverage": "0.4.2",
+    "karma-jasmine": "0.3.6",
+    "karma-phantomjs-launcher": "0.2.0",
+    "phantomjs": "1.9.17"
+  },
+  "scripts": {
+    "test": "node ./node_modules/karma/bin/karma start ./karma.config.js",
+    "test-coverage": "node ./node_modules/karma/bin/karma start ./karma.config.js --reporters coverage --single-run"
   }
 }

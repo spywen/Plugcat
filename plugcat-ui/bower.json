@@ -15,7 +15,12 @@
   "dependencies": {
     "angular": "1.4.3",
     "angular-route": "1.4.3",
-    "angular-material": "0.10.0"
+    "angular-material": "0.10.0",
+    "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
+    "lodash": "3.10.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.4.3"
   },
   "overrides": {
     "angular": {
@@ -45,6 +50,18 @@
         "prod": [
           "angular-route.min.js",
           "angular-route.min.js.map"
+        ]
+      }
+    },
+    "angular-hotkeys": {
+      "main": {
+        "dev": [
+          "build/hotkeys.js",
+          "build/hotkeys.css"
+        ],
+        "prod": [
+          "build/hotkeys.min.js",
+          "build/hotkeys.min.css"
         ]
       }
     }

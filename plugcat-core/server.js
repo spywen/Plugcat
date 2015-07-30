@@ -1,6 +1,7 @@
 //------ MODULES ------
 var CONFIGS = require('./configs.js'),
     http = require('http'), 
+    moment = require('moment'),
     path = require('path'),
     io = require('socket.io'),
     express = require('express'),
@@ -11,7 +12,8 @@ var CONFIGS = require('./configs.js'),
 
         console.log('Example app listening at http://%s:%s', host, port);
     }),
-    io = require('socket.io').listen(server);
+    io = require('socket.io').listen(server),
+    _ = require('lodash');
 
 //------ CONSTANTS ------
 const PORT=CONFIGS.port;
@@ -44,9 +46,22 @@ var rooms = [];
 
 io.sockets.on('connection', function (socket) {
 
+    socket.on('joinRoom', function (room) {
+        if(_.some(rooms, room)){
+            socket.join(room);
+            socket.broadcast.to(room).emit('joinRoom', true);
+        }else{
+            rooms.push(room);
+            socket.join(room);
+            socket.broadcast.to(room).emit('joinRoom', true);
+        }
+    });
+
     socket.on('messageOut', function (message) {
         message.owner = 'other';
-        socket.broadcast.emit('messageIn', message);
+        message.hour = moment().format("HH:mm");
+        message.day = moment().format("DD/MM/YYYY");
+        socket.broadcast.to(message.room).emit('messageIn', message);
     });
 
 });

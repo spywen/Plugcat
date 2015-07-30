@@ -1,4 +1,5 @@
 angular.module('plugcat.home', [
+	'ngRoute'
 ])
 .config(function ($routeProvider){
     $routeProvider.when("/",{
@@ -6,8 +7,16 @@ angular.module('plugcat.home', [
         templateUrl: "home.html"
     });
 })
-.controller('homeCtrl', function($scope, $location){
+.factory('homeVar', function(){
+	return {
+		roomPath: "/room/"
+	};
+}).controller('homeCtrl', function($scope, $location, homeVar){
 	$scope.goToRoom = function(){
-		$location.path('/room/' + $scope.room.name);
+		$location.path(homeVar.roomPath + $scope.room.name);
+	};
+
+	document.onkeydown = function(e) {
+	  	document.querySelector(".roomInput").focus();
 	};
 });

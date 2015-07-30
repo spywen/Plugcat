@@ -1,20 +1,35 @@
 #room{
 	.chat{
 		.message{
-			max-width:60%;
-			word-wrap: break-word;
-			padding:5px 10px;
-			border-radius: 3px;
-			margin: 4px;
-			&.me{
-				background : #CBEACB;
-				float:left;
+			.content{
+				max-width:60%;
+				word-wrap: break-word;
+				padding:5px 10px;
+				border-radius: 3px;
+				margin: 4px;
+				&.me{
+					background : #CBEACB;
+					float:right;
+				}
+				&.other{
+					background : #CBE0EA;
+					float:left;
+				}
+				clear:both;
 			}
-			&.other{
-				background : #CBE0EA;
-				float:right;
+			.date{
+				padding-left: 5px;
+				position: relative;
+				top: -8px;
+				color: #ADABAB;
+				.hour{
+					font-size: 11px;
+	    			font-weight: bold;
+				}
+				.day{
+					font-size: 9px;
+				}
 			}
-			clear:both;
 		}
 	}
 }
