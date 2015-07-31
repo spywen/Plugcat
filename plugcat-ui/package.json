@@ -34,7 +34,8 @@
     "phantomjs": "1.9.17"
   },
   "scripts": {
+    "test": "node ./node_modules/karma/bin/karma start ./karma.config.js --single-run",
     "test-watch": "node ./node_modules/karma/bin/karma start ./karma.config.js",
-    "test": "node ./node_modules/karma/bin/karma start ./karma.config.js --reporters coverage --single-run"
+    "test-coverage": "node ./node_modules/karma/bin/karma start ./karma.config.js --reporters coverage --single-run"
   }
 }
