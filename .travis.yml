@@ -3,6 +3,10 @@ node_js:
   - "0.10"
 env:
   - UI=plugcat-ui
+before_script:
+  - "npm install -g bower"
 install:
   - "cd $UI"
   - "npm install"
+  - "bower install"
+  - "gulp --env=prod"
