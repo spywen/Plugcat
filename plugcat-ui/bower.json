@@ -64,6 +64,12 @@
           "build/hotkeys.min.css"
         ]
       }
+    },
+    "lodash": {
+      "main": {
+        "dev": "lodash.js",
+        "prod": "lodash.min.js"
+      }
     }
   }
 }
