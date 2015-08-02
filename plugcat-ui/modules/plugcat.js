@@ -1,7 +1,11 @@
 angular.module('plugcat',[
 	'ngRoute',
 	'ngMaterial',
+	
 	'plugcat.partial',
+	'plugcat.translate',
+	'plugcat.menu',
+	'plugcat.logo',
 	'plugcat.home',
 	'plugcat.room'
 ])

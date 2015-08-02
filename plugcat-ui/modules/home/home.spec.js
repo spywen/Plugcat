@@ -1,6 +1,6 @@
 describe('plugcat.home', function(){
 
-    var $scope, $rootScope, $route, createController, $location, homeVar;
+    var $scope, $rootScope, $route, createController, $location, homeVar, $timeout;
 
     beforeEach(module('plugcat.home'));
 
@@ -10,11 +10,12 @@ describe('plugcat.home', function(){
         };
     });
 
-    beforeEach(inject(function (_$location_, _$route_, _$rootScope_, _homeVar_) {
+    beforeEach(inject(function (_$location_, _$route_, _$rootScope_, _homeVar_, _$timeout_) {
         $rootScope =_$rootScope_;
         $location = _$location_;
         route = _$route_;
         homeVar = _homeVar_;
+        $timeout = _$timeout_;
     }));
 
     beforeEach(inject(function ($controller) {

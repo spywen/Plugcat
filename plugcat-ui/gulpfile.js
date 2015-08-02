@@ -22,6 +22,7 @@ var indexLocation = "./pages/index.ejs",
     scriptsLocation = ['./modules/**/*.js','!./modules/**/*.spec.js'],
     viewsLocation = ['./modules/**/*.html'],
     imgLocation = ['./modules/img/**'],
+    langLocation = ['./modules/i18n/lang/**'],
     stylesLocation = ['./modules/**/*.less'];
 //Destination
 var backEndDir = "./../plugcat-core/dist/",
@@ -30,6 +31,7 @@ var backEndDir = "./../plugcat-core/dist/",
     pluginsScriptsDestination = backEndDir + "libs",
     stylesBaseDestination = backEndDir + 'css',
     imgDestination = backEndDir + 'img',
+    langDestination = backEndDir + 'lang',
     viewsDestination = backEndDir + 'partials';
 //Args
 var env = args.env || 'dev';
@@ -121,12 +123,17 @@ gulp.task('images', function () {
         .pipe(gulp.dest(imgDestination));
 });
 
+gulp.task('lang', function () {
+    return gulp.src(langLocation)
+        .pipe(gulp.dest(langDestination));
+});
+
 //Commands :
 //Parameter : gulp (--env=prod or --debug=dev (default value)),
 //Remark : task executed in parallel (no order defined here)
 gulp.task('default', ['script', 'view', 'style']);
 //ALL
-gulp.task('all', ['default', 'inject', 'images']);
+gulp.task('all', ['default', 'inject', 'images', 'lang']);
 
 gulp.task('watch', ['all'], function() {
     gulp.watch(scriptsLocation, ['all']);

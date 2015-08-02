@@ -1,0 +1,10 @@
+{
+	"MENU_CHOOSE_NAME" : "Choisissez votre nom",
+	"MENU_CHOOSE_COLOR" : "Choisissez votre couleur",
+	"MENU_COOKIES_AUTO" : "En continuant de naviguer sur ce site, vous acceptez l'utilisation de cookies pour vous fournir un service de qualité.",
+
+	"HOME_SUBTITLE" : "Chattez à propos de tout, avec n'importe qui !",
+	"HOME_FIND_CREATE" : "Trouvez ou créez votre salle de discussion",
+	"HOME_GO" : "Entrer",
+	"HOME_ROOM_NAME_INVALID" : "Nom de salle de discussion invalide (caractères spéciaux autorisés : #-+=_&)"
+}

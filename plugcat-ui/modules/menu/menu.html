@@ -1,0 +1,55 @@
+<header id="menu" ng-init="">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button class="md-icon-button" aria-label="Settings">
+				<md-icon md-svg-icon="static/img/plugcat_white_30x30.svg"></md-icon>
+			</md-button>
+			<h2>
+				<span>
+					<a href='/'>Plugcat</a>
+				</span>
+			</h2>
+			<span flex></span>
+			<md-menu md-position-mode="target-right target" ng-controller="translateCtrl">
+				<md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu()">
+					<i class="fa fa-language"></i>
+				</md-button>
+				<md-menu-content width="3">
+					<md-menu-item>
+						<md-button ng-disabled="en" ng-click="changeLanguage('en');$mdCloseMenu()">
+						English
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button ng-disabled="fr" ng-click="changeLanguage('fr')">
+						Français
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+			<md-menu md-position-mode="target-right target">
+				<md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu()">
+					<i class="fa fa-meh-o"></i>
+				</md-button>
+				<md-menu-content width="3">
+					<md-menu-item>
+						<md-button>
+						<md-icon>
+							<i class="fa fa-user"></i>
+						</md-icon>
+						{{'MENU_CHOOSE_NAME' | translate}}
+						</md-button>
+					</md-menu-item>
+					<md-menu-item>
+						<md-button>
+						<md-icon>
+							<i class="fa fa-star"></i>
+						</md-icon>
+						{{'MENU_CHOOSE_COLOR' | translate}}
+						</md-button>
+					</md-menu-item>
+				</md-menu-content>
+			</md-menu>
+		</div>
+	</md-toolbar>
+</header>

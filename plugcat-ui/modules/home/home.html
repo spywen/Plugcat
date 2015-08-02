@@ -1,22 +1,33 @@
 <div id="home">
-	<h1 class="md-display-4">MA PAGE HOME</h1>
-	<div layout="row" layout-sm="column">
-		<div flex="25">
-			
+	<div>
+		<div class="header" layout="column" layout-align="center center">
+			<h1 class="md-display-4">Plugcat</h1>
+			<h2>{{'HOME_SUBTITLE' | translate}}</h2>
+			<logo></logo>
 		</div>
-		<div flex="50">
-			<form>
-				<div flex class="roomSelection" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
-					<md-input-container flex>
-						<label>Find or Create your room</label>
-						<input class="roomInput" ng-model="room.name">
-					</md-input-container>
-				    <md-button class="md-raised md-primary" ng-click="goToRoom()">Go</md-button>
-				</div>
-			</form>
-		</div>
-		<div flex="25">
-			
+		<div layout="row" layout-sm="column">
+			<div flex="25">
+				
+			</div>
+			<div flex="50">
+				<form name="roomForm" ng-submit="goToRoom()">
+					<div flex class="roomSelection" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
+						<md-input-container flex>
+							<label>{{'HOME_FIND_CREATE' | translate}}</label>
+							<input class="roomInput" required name="name" ng-model="room.name" ng-minlength="1" ng-maxlength="50" validroomname>
+							<div ng-messages="roomForm.name.$error">
+                                <div ng-message="maxlength">{{ 'HOME_ROOM_NAME_INVALID' | translate}}</div>
+                                <div ng-message="validroomname">{{ 'HOME_ROOM_NAME_INVALID' | translate}}</div>
+                            </div>
+						</md-input-container>
+					    <md-button type="submit" ng-disabled="roomForm.$invalid" class="md-raised md-primary" ng-disabled="roomForm.$invalid">{{'HOME_GO' | translate}}</md-button>
+					</div>
+				</form>
+			</div>
+			<div flex="25">
+				
+			</div>
 		</div>
 	</div>
+	
 </div>
