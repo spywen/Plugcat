@@ -1,6 +1,6 @@
 angular.module('plugcat.socket', [])
-.factory('socket', function ($rootScope) {
-    var socket = io.connect('http://localhost:8080');
+.factory('socket', function ($rootScope, $location) {
+    var socket = io.connect($location.protocol() + "://" + $location.host() + ":" + $location.port());
     return {
         on: function (eventName, callback) {
             function wrapper() {

@@ -3,8 +3,11 @@
 	"MENU_CHOOSE_COLOR" : "Choose your color",
 	"MENU_COOKIES_AUTO" : "Continuing to browse this website you accept the use of cookies to enable us to offer a high quality service.",
 	
-	"HOME_SUBTITLE" : "Chat about anything, with anybody !",
+	"HOME_SUBTITLE" : "Quick chat, for my fast life !",
 	"HOME_FIND_CREATE" : "Find or create your room",
 	"HOME_GO" : "Go",
-	"HOME_ROOM_NAME_INVALID" : "Invalid room name (Special charakters allowed: #-+=_&)"
+	"HOME_ROOM_NAME_INVALID" : "Invalid room name (Special charakters allowed: #-+=_&)",
+	"HOME_PLUS_FRENCH": "French touch <3",
+	"HOME_PLUS_SECURITY": "Security",
+	"HOME_PLUS_SIMPLE": "Quick and simple"
 }

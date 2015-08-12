@@ -1,31 +1,31 @@
+//------ CONFIGS ------
+const CONFIGS = require('./configs.js');
+var logger = require('./helpers/logger');
+
 //------ MODULES ------
-var CONFIGS = require('./configs.js'),
-    http = require('http'), 
+var http = require('http'), 
     moment = require('moment'),
     path = require('path'),
     io = require('socket.io'),
     express = require('express'),
     app = express(),
-    server = http.createServer(app).listen(8080, function(){
+    server = http.createServer(app).listen(CONFIGS.port, function(){
         var host = server.address().address;
         var port = server.address().port;
 
-        console.log('Example app listening at http://%s:%s', host, port);
+        console.log('Plugcat running at http://%s:%s', host, port);
     }),
     io = require('socket.io').listen(server),
     _ = require('lodash');
 
-//------ CONSTANTS ------
-const PORT=CONFIGS.port;
 
-//------ CONFIGS ------
+//------ VIEWS ------
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //------ PAGE ROUTING ------
 var index = require('./routes/index'),
-    error = require('./routes/error'),
-    logger = require('./helpers/logger');
+    error = require('./routes/error');
 
 var logAccess = function(req, res, next){
     logger.debug('Access to : ' + req.url);
