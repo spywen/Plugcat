@@ -4,6 +4,7 @@ angular.module('plugcat.home', [
 ])
 .config(function ($routeProvider){
     $routeProvider.when("/",{
+    	title: 'Plugcat',
         controller: 'homeCtrl',
         templateUrl: "home.html"
     });

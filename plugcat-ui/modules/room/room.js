@@ -1,19 +1,24 @@
 angular.module('plugcat.room', [
 	'plugcat.socket',
-	'cfp.hotkeys'
+	'cfp.hotkeys',
+	'plugcat.favico',
+	'plugcat.presence'
 ])
 .config(function ($routeProvider){
     $routeProvider.when("/room/:name",{
+    	title: 'Loading - Plugcat',
         controller: 'roomCtrl',
         templateUrl: "room.html"
     });
 })
-.controller('roomCtrl', function($scope, $routeParams, socket, hotkeys){
+.controller('roomCtrl', function($scope, $rootScope, $routeParams, socket, hotkeys, favico, presence){
 	$scope.newMessageContent = '';
+	$rootScope.title = $routeParams.name + ' - Plugcat';
 	$scope.room = {
 		name: $routeParams.name,
 		messages: []
 	};
+	$scope.count = 0;
 
 	$scope.joinRoom = function(){
 		socket.emit("joinRoom", $routeParams.name);
@@ -35,7 +40,19 @@ angular.module('plugcat.room', [
 
 	socket.on("messageIn", function(data){
 		$scope.room.messages.push(data);
+		//Play sound
+		var audio = new Audio('/static/sounds/alert1.mp3');
+		audio.play();
+
+		//Add notification
+		$scope.count++;
+		favico.badge($scope.count);
     });
+
+    presence.onChange(function(state) {
+    	$scope.count = 0;
+	    favico.reset();
+	});
 
     hotkeys.add({
 		combo: 'enter',

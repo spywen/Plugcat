@@ -18,11 +18,12 @@ var gulp = require('gulp'), //GULP !!!
 
 
 //Location
-var indexLocation = "./pages/index.ejs",
+var indexLocation = "./resources/pages/index.ejs",
     scriptsLocation = ['./modules/**/*.js','!./modules/**/*.spec.js'],
     viewsLocation = ['./modules/**/*.html'],
-    imgLocation = ['./modules/img/**'],
-    langLocation = ['./modules/i18n/lang/**'],
+    imgLocation = ['./resources/img/**'],
+    langLocation = ['./resources/lang/**'],
+    soundLocation = ['./resources/sounds/**'],
     stylesLocation = ['./modules/**/*.less'];
 //Destination
 var backEndDir = "./../plugcat-core/dist/",
@@ -32,6 +33,7 @@ var backEndDir = "./../plugcat-core/dist/",
     stylesBaseDestination = backEndDir + 'css',
     imgDestination = backEndDir + 'img',
     langDestination = backEndDir + 'lang',
+    soundDestination = backEndDir + 'sounds',
     viewsDestination = backEndDir + 'partials';
 //Args
 var env = args.env || 'dev';
@@ -128,12 +130,17 @@ gulp.task('lang', function () {
         .pipe(gulp.dest(langDestination));
 });
 
+gulp.task('sounds', function () {
+    return gulp.src(soundLocation)
+        .pipe(gulp.dest(soundDestination));
+});
+
 //Commands :
 //Parameter : gulp (--env=prod or --debug=dev (default value)),
 //Remark : task executed in parallel (no order defined here)
 gulp.task('default', ['script', 'view', 'style']);
 //ALL
-gulp.task('all', ['default', 'inject', 'images', 'lang']);
+gulp.task('all', ['default', 'inject', 'images', 'lang', 'sounds']);
 
 gulp.task('watch', ['all'], function() {
     gulp.watch(scriptsLocation, ['all']);
