@@ -1,12 +1,7 @@
-var logger = require('../helpers/logger');
+var logger = require('./../helpers/logger');
 
-exports.unknownPage = function(req, res){
-	res.status(404);
-    res.render('404',{});
-    logger.error('Error 404 - unknown page : ' + req.url);
-};
-exports.serverError = function(req, res){
-	res.status(500);
-    res.render('500',{});
+exports.errorHandler = function(err, req, res, next) {
     logger.error('Error 500 - server error');
+    res.status(500);
+    res.render('500', { error: err });
 };
