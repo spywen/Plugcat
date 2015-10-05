@@ -1,10 +1,10 @@
 <div presence="MOUSE TOUCH" id="room" ng-init='joinRoom()' ng-keypress='keyPressed()'>
-	<h2 class="md-display-3">{{room.name}}</h2>
+	<!--<h2 class="md-display-3">{{room.name}}</h2>-->
 
 	<div layout="row">
 		<div flex="75">
 			<div layout="column" class='chat' layout-padding>
-				<div flex layout='column'>
+				<div flex layout='column' class="messages" id="messages" keep-scroll-bot="room.messages">
 					<div class='message' ng-repeat='message in room.messages'>
 						<div flex layout='column'>
 							<div>
@@ -17,7 +17,7 @@
 						</div>
 					</div>
 				</div>
-				<div flex class="roomSelection" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
+				<div flex class="messageBox" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
 					<md-input-container flex>
 						<label>Send a message</label>
 						<input presence="KEYBOARD" class='messageInput' ng-model="newMessageContent" autofocus="autofocus">

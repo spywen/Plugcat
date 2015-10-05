@@ -67,5 +67,18 @@ angular.module('plugcat.room', [
 	document.onkeydown = function(e) {
 	  	document.querySelector(".messageInput").focus();
 	};
-
+}).directive('keepScrollBot', function () {
+  return {
+    scope: {
+      keepScrollBot: "="
+    },
+    link: function ($scope, $element) {
+      $scope.$watchCollection('keepScrollBot', function (newValue) {
+        if (newValue)
+        {
+          	$element[0].scrollTop = $element[0].scrollHeight;
+        }
+      });
+    }
+  };
 });
