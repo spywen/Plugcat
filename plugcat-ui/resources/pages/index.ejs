@@ -13,6 +13,12 @@
 	<body controller='mainCtrl'>
 		<menu></menu>
 		<div data-ng-view></div>
+
+		<!-- Connected user -->
+		<script>
+			 window.user = <%- user %>;
+		</script>
+
 	    <!-- inject:js -->
 	    <!-- endinject -->
 	    <script type="text/javascript" src="/static/js/all@MINIFY@js"></script>

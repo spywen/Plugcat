@@ -145,7 +145,7 @@ gulp.task('all', ['default', 'inject', 'images', 'lang', 'sounds']);
 gulp.task('watch', ['all'], function() {
     gulp.watch(scriptsLocation, ['all']);
     gulp.watch(stylesLocation, ['style']);
-    gulp.watch(viewsLocation, ['view']);
-    gulp.watch(viewsLocation, ['script']);
-    gulp.watch(viewsLocation, ['inject']);
+    gulp.watch(viewsLocation, ['view', 'script']);
+    gulp.watch(indexLocation, ['inject']);
+    gulp.watch(langLocation, ['lang']);
 });

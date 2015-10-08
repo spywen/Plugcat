@@ -2,8 +2,10 @@
 	"MENU_CHOOSE_NAME" : "Choose your name",
 	"MENU_CHOOSE_COLOR" : "Choose your color",
 	"MENU_COOKIES_AUTO" : "Continuing to browse this website you accept the use of cookies to enable us to offer a high quality service.",
-	
-	"HOME_SUBTITLE" : "Quick chat, for my fast life !",
+	"MENU_LOGIN" : "Log in",
+	"MENU_LOGOUT" : "Log out",
+
+	"HOME_SUBTITLE" : "Quick chat, for a fast life !",
 	"HOME_FIND_CREATE" : "Find or create your room",
 	"HOME_GO" : "Go",
 	"HOME_ROOM_NAME_INVALID" : "Invalid room name (Special charakters allowed: #-+=_&)",

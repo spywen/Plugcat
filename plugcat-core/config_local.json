@@ -1,5 +1,14 @@
 {
 	"port": 8080,
 	"address": "http://localhost",
-	"logLevel": "debug"
+	"logLevel": "debug",
+	"sessionKey": "Wj9P9FVPYYITaMT",
+	"googleAuth" : {
+        "clientID"      : "589861391017-ej9agt82j4kpdcttke0ipeiv1o8dg50g.apps.googleusercontent.com",
+        "clientSecret"  : "PUPfU2o_0YzLuDLwx8Db7Caj",
+        "callbackURL"   : "http://localhost:8080/auth/google/callback"
+    },
+    "db":{
+    	"address":"mongodb://localhost:27017/plugcat"
+    }
 }

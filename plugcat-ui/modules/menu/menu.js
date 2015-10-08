@@ -1,6 +1,7 @@
 angular.module('plugcat.menu', [
 	'ngCookies',
-	'pascalprecht.translate'
+	'pascalprecht.translate',
+	'plugcat.authManager'
 ])
 .run(function($mdToast, $cookieStore, $translate, $timeout) {
 	$timeout(function(){
@@ -15,7 +16,15 @@ angular.module('plugcat.menu', [
 		    });
 		}
 	}, 1000);
-}).controller('menuCtrl',function($scope, $mdToast, $cookieStore, $translate){
+}).controller('menuCtrl',function($scope, authManager){
+
+	$scope.user = undefined;
+
+	$scope.userLoggedIn = function(){
+		$scope.user = authManager.getUserConnected();
+	};
+
+	$scope.userLoggedIn();
 
 }).directive('menu',function($mdToast){
 	return {

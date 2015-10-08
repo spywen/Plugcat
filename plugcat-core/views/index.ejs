@@ -17,6 +17,12 @@
 	<body controller='mainCtrl'>
 		<menu></menu>
 		<div data-ng-view></div>
+
+		<!-- Connected user -->
+		<script>
+			 window.user = <%- user %>;
+		</script>
+
 	    <!-- inject:js -->
 	    <script src="/static/libs/angular/angular.js"></script>
 	    <script src="/static/libs/angular-route/angular-route.js"></script>
@@ -32,6 +38,7 @@
 	    <script src="/static/libs/angular-messages/angular-messages.js"></script>
 	    <script src="/static/libs/favico.js/favico.js"></script>
 	    <script src="/static/libs/angular-presence/angular-presence.js"></script>
+	    <script src="/static/libs/restangular/dist/restangular.js"></script>
 	    <script src="/static/libs/angular-material/angular-material.js"></script>
 	    <!-- endinject -->
 	    <script type="text/javascript" src="/static/js/all.js"></script>

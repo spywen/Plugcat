@@ -1,24 +1,42 @@
-var logger = require('./../helpers/logger'),
-	ErrorHandler = require('./error').errorHandler,
-	express = require('express');
+var logger = require('./../helpers/logger')
+	, ErrorHandler = require('./error').errorHandler
+	, express = require('express')
+    , RoutesHandler = require('./routesHandler');
 
-module.exports = exports = function(app) {
+module.exports = exports = function(db, app, passport) {
 
-	//Home
-	app.get('/', [logAccess], function(req, res){
-		return res.render('index',{});
+    var routesHandler = new RoutesHandler(db);
+
+	// --- Home ---
+	app.get('/', routesHandler.returnIndexAndConnectedUserProfile);
+
+	// --- Room ---
+	app.get('/room/*', routesHandler.returnIndexAndConnectedUserProfile);
+
+	// --- Authentication ---
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.get('/auth/google/callback',// the callback after google has authenticated the user
+        passport.authenticate('google', {
+            successRedirect : '/',
+            failureRedirect : '/'
+        })
+    );
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+    
+/*
+    app.get('/api/auth/loggedin', function(req, res) {
+    	if(req.isAuthenticated()){
+    		console.dir(req.user._json);
+    		res.send(req.user._json);
+    	}else{
+    		res.send(401);
+    	}
 	});
-
-	app.get('/room/*', [logAccess], function(req, res){
-		return res.render('index',{});
-	});
+*/
 
 	app.use('/static', express.static('dist'));
 	app.use(ErrorHandler);
-
-};
-
-var logAccess = function(req, res, next){
-    logger.debug('Access to : ' + req.url);
-    next();
 };

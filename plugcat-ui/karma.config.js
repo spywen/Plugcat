@@ -22,6 +22,7 @@ module.exports = function (config) {
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-messages/angular-messages.js',
             'bower_components/angular-hotkeys/build/hotkeys.js',
+            'bower_components/restangular/dist/restangular.js',
             'modules/**/*.js',
             'modules/**/*.spec.js'
         ],

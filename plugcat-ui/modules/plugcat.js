@@ -1,6 +1,7 @@
 angular.module('plugcat',[
 	'ngRoute',
 	'ngMaterial',
+	'restangular',
 	
 	'plugcat.partial',
 	'plugcat.translate',
@@ -9,8 +10,9 @@ angular.module('plugcat',[
 	'plugcat.home',
 	'plugcat.room'
 ])
-.config(function($routeProvider,$locationProvider){
+.config(function($routeProvider,$locationProvider, RestangularProvider){
 	$locationProvider.html5Mode(true);
+	RestangularProvider.setBaseUrl('api/');
 })
 .run(function($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
