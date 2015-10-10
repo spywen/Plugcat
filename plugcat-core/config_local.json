@@ -4,8 +4,8 @@
 	"logLevel": "debug",
 	"sessionKey": "Wj9P9FVPYYITaMT",
 	"googleAuth" : {
-        "clientID"      : "589861391017-ej9agt82j4kpdcttke0ipeiv1o8dg50g.apps.googleusercontent.com",
-        "clientSecret"  : "PUPfU2o_0YzLuDLwx8Db7Caj",
+        "clientID"      : "641048810692-ive14s2qb2fn1d9au8s3m421vlel6atr.apps.googleusercontent.com",
+        "clientSecret"  : "HP3cwWKxVCYuV318xWe-u8AU",
         "callbackURL"   : "http://localhost:8080/auth/google/callback"
     },
     "db":{

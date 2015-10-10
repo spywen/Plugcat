@@ -15,8 +15,8 @@ describe('plugcat.dataService.authService', function(){
     });
 
 	it('should get current user connected data', function(){
-		$httpBackend.expectGET('/auth/loggedin').respond();
-		authService.loggedin();
+		$httpBackend.expectGET('/auth').respond();
+		authService.getConnectedUser();
         $httpBackend.flush();
 	});
 });
