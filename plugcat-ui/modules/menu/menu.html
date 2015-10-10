@@ -27,29 +27,6 @@
 					</md-menu-item>
 				</md-menu-content>
 			</md-menu>
-			<md-menu md-position-mode="target-right target">
-				<md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu()">
-					<i class="fa fa-meh-o"></i>
-				</md-button>
-				<md-menu-content width="3">
-					<md-menu-item>
-						<md-button>
-							<md-icon class="md-icon">
-								<i class="fa fa-user"></i>
-							</md-icon>
-							{{'MENU_CHOOSE_NAME' | translate}}
-						</md-button>
-					</md-menu-item>
-					<md-menu-item>
-						<md-button>
-							<md-icon class="md-icon">
-								<i class="fa fa-star"></i>
-							</md-icon>
-							{{'MENU_CHOOSE_COLOR' | translate}}
-						</md-button>
-					</md-menu-item>
-				</md-menu-content>
-			</md-menu>
 
 			<!-- User logged out -->
 			<md-button class="login" href="/auth/google" target="_self" ng-show="!user">
@@ -62,6 +39,11 @@
 					<img alt="Avatar" class="avatar" data-ng-src="{{user.avatar.url}}"/>
 				</md-button>
 				<md-menu-content width="3">
+					<md-menu-item>
+						<md-button href="/settings">
+							{{'MENU_SETTINGS' | translate}} 
+						</md-button>
+					</md-menu-item>
 					<md-menu-item>
 						<md-button href="/logout" target="_self" class="logout">
 							{{'MENU_LOGOUT' | translate}} 

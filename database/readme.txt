@@ -1,0 +1,1 @@
+mongoimport -d plugcat -c colors --type csv --file colors.csv --headerline

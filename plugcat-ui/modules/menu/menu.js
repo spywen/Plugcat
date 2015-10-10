@@ -20,11 +20,12 @@ angular.module('plugcat.menu', [
 
 	$scope.user = undefined;
 
-	$scope.userLoggedIn = function(){
+	//Get user connected
+	$scope.getUserConnected = function(){
 		$scope.user = authManager.getUserConnected();
 	};
 
-	$scope.userLoggedIn();
+	$scope.getUserConnected();
 
 }).directive('menu',function($mdToast){
 	return {

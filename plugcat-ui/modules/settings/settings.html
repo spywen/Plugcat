@@ -1,0 +1,57 @@
+<div id="settings" ng-init="loadColors()">
+	<div layout="row" layout-margin layout-sm="column">
+		<div flex></div>
+		<div flex="50" flex-sm="100">
+	    	<div layout="column" ng-cloak class="content">
+				<md-toolbar class="md-primary">
+					<div class="md-toolbar-tools">
+						<h2 class="md-flex">{{'MENU_SETTINGS' | translate}}</h2>
+					</div>
+				</md-toolbar>
+				<md-content layout-padding>
+					<form name="settingsForm">
+						<div layout="row">
+							<md-input-container flex>
+								<label>{{'SETTINGS_PUBLICNAME' | translate}}</label>
+								<input ng-model="settings.publicName">
+							</md-input-container>
+							<md-button class="md-mini md-accent">
+								<i class="fa fa-info"></i>
+								<md-tooltip>
+								{{'SETTINGS_PUBLICNAME_i' | translate}}
+								</md-tooltip>
+							</md-button>
+						</div>
+						
+						<div layout="row" class="colorSelector">
+							<div flex="10">
+								<i class="fa fa-circle" style="color:{{settings.color}}"></i>
+							</div>
+							<md-input-container flex>
+						        <md-select ng-model="settings.color" aria-label="Message background color" >
+									<md-option ng-repeat="color in colors" value="{{color.background}}" style="color:{{color.background}}">
+										<i class="fa fa-circle" style="color:{{color.background}}"></i>
+										&nbsp;{{color.name}}
+									</md-option>
+						        </md-select>
+							</md-input-container>
+							<md-button class="md-mini md-accent">
+								<i class="fa fa-info"></i>
+								<md-tooltip>
+								{{'SETTINGS_COLOR_i' | translate}}
+								</md-tooltip>
+							</md-button>
+						</div>
+						<div layout="row">
+							<md-input-container flex>
+								<md-button class="md-raised md-primary" ng-click="submit()">{{'SETTINGS_SAVE' | translate}}</md-button>
+							</md-input-container>
+						</div>
+					</form>
+				</md-content>
+			</div>
+	  	</div>
+	  	<div flex></div>
+	</div>
+	
+</div>

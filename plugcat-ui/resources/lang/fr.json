@@ -4,6 +4,16 @@
 	"MENU_COOKIES_AUTO" : "En continuant de naviguer sur ce site, vous acceptez l'utilisation de cookies pour vous fournir un service de qualité.",
 	"MENU_LOGIN" : "Connexion",
 	"MENU_LOGOUT" : "Déconnexion",
+	"MENU_SETTINGS" : "Paramètres",
+
+	"SETTINGS_PUBLICNAME": "Nom public",
+	"SETTINGS_PUBLICNAME_i": "Ce nom vous représentera publiquement",
+	"SETTINGS_COLOR_i": "Cette couleur sera celle de la bulle de vos messages et sera visible par tous",
+	"SETTINGS_SAVE": "Sauvegarder",
+
+	"SAVED": "Sauvegardé !",
+	"GENERIC_ERROR": "Une erreur innatendue s'est produite. Si le problème persiste merci de contacter le support",
+
 
 	"HOME_SUBTITLE" : "La messagerie rapide, pour une vie à 100 à l'heure !",
 	"HOME_FIND_CREATE" : "Trouvez ou créez votre salle de discussion",

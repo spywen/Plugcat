@@ -4,6 +4,15 @@
 	"MENU_COOKIES_AUTO" : "Continuing to browse this website you accept the use of cookies to enable us to offer a high quality service.",
 	"MENU_LOGIN" : "Log in",
 	"MENU_LOGOUT" : "Log out",
+	"MENU_SETTINGS" : "Settings",
+
+	"SETTINGS_PUBLICNAME": "Public name",
+	"SETTINGS_PUBLICNAME_i": "This name will publicly represent you",
+	"SETTINGS_COLOR_i": "This color will be the one of your dialog balloons and will be visible by everyone",
+	"SETTINGS_SAVE": "Save",
+
+	"SAVED": "Saved !",
+	"GENERIC_ERROR": "An unexpected error occured. If the problem persists please contact the support team",
 
 	"HOME_SUBTITLE" : "Quick chat, for a fast life !",
 	"HOME_FIND_CREATE" : "Find or create your room",

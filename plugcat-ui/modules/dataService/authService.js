@@ -6,10 +6,10 @@ angular.module('plugcat.dataService.authService', [
     }
 
     return {
-    	loggedin: loggedin
+    	getConnectedUser: getConnectedUser
     };
 
-    function loggedin() {
-        return baseAuth().one('loggedin').get();
+    function getConnectedUser() {
+        return baseAuth().get();
     }
 });

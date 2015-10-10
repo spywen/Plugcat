@@ -1,17 +1,20 @@
-var logger = require('./../helpers/logger')
-	, ErrorHandler = require('./error').errorHandler
+var ErrorHandler = require('./error').errorHandler
 	, express = require('express')
-    , RoutesHandler = require('./routesHandler');
+    , RoutesHandler = require('./routesHandler')
+    , Api = require('./api');
 
 module.exports = exports = function(db, app, passport) {
 
     var routesHandler = new RoutesHandler(db);
 
 	// --- Home ---
-	app.get('/', routesHandler.returnIndexAndConnectedUserProfile);
+	app.get('/', routesHandler.connexionNotRequired);
 
 	// --- Room ---
-	app.get('/room/*', routesHandler.returnIndexAndConnectedUserProfile);
+	app.get('/room/*', routesHandler.connexionNotRequired);
+
+    // --- Settings ---
+    app.get('/settings', routesHandler.connexionRequired);
 
 	// --- Authentication ---
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
@@ -26,16 +29,10 @@ module.exports = exports = function(db, app, passport) {
         res.redirect('/');
     });
     
-/*
-    app.get('/api/auth/loggedin', function(req, res) {
-    	if(req.isAuthenticated()){
-    		console.dir(req.user._json);
-    		res.send(req.user._json);
-    	}else{
-    		res.send(401);
-    	}
-	});
-*/
+
+    // --- API ---
+    Api(db, app);
+    
 
 	app.use('/static', express.static('dist'));
 	app.use(ErrorHandler);

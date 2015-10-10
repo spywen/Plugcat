@@ -28,7 +28,8 @@
     "angular-messages": "1.4.3",
     "favico.js": "0.3.9",
     "angular-presence": "0.2.0",
-    "restangular": "~1.5.1"
+    "restangular": "1.5.1",
+    "angular-loading-bar": "0.8.0"
   },
   "devDependencies": {
     "angular-mocks": "1.4.3"
@@ -43,6 +44,18 @@
         "prod": [
           "angular.min.js",
           "angular.min.js.map"
+        ]
+      }
+    },
+    "angular-loading-bar": {
+      "main": {
+        "dev": [
+          "build/loading-bar.js",
+          "build/loading-bar.css"
+        ],
+        "prod": [
+          "build/loading-bar.min.js",
+          "build/loading-bar.min.css"
         ]
       }
     },

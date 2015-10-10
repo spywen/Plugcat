@@ -2,7 +2,9 @@ angular.module('plugcat.room', [
 	'plugcat.socket',
 	'cfp.hotkeys',
 	'plugcat.favico',
-	'plugcat.presence'
+	'plugcat.presence',
+	'plugcat.authManager',
+	'plugcat.dataService.colorsService'
 ])
 .config(function ($routeProvider){
     $routeProvider.when("/room/:name",{
@@ -11,7 +13,7 @@ angular.module('plugcat.room', [
         templateUrl: "room.html"
     });
 })
-.controller('roomCtrl', function($scope, $rootScope, $routeParams, socket, hotkeys, favico, presence){
+.controller('roomCtrl', function($scope, $rootScope, $routeParams, socket, hotkeys, favico, presence, authManager, colorsService){
 	$scope.newMessageContent = '';
 	$rootScope.title = $routeParams.name + ' - Plugcat';
 	$scope.room = {
@@ -19,9 +21,19 @@ angular.module('plugcat.room', [
 		messages: []
 	};
 	$scope.count = 0;
+	$scope.currentUser = authManager.getUserConnected();
+	$scope.settings = {};
 
-	$scope.joinRoom = function(){
+	$scope.loadRoom = function(){
+		//Join room
 		socket.emit("joinRoom", $routeParams.name);
+
+		//Get colors
+		colorsService.findAll().then(function(colors){
+			$scope.settings = {colors: colors};
+		}, function(){
+			plugtoast.error($translate.instant('GENERIC_ERROR'));
+		});
 	};
 
 	$scope.sendMessage = function(){
@@ -30,7 +42,10 @@ angular.module('plugcat.room', [
 				room: $routeParams.name,
 				content: $scope.newMessageContent,
 				date: undefined,
-				owner:'me'
+				owner:'me',
+				anonym: _.isUndefined($scope.currentUser),
+				userId: _.isUndefined($scope.currentUser) ? 0 : $scope.currentUser._id,
+				background: $scope.currentUser ? $scope.currentUser.color : "#CBEACB"
 			};
 			$scope.room.messages.push(newMessage);
 			$scope.newMessageContent = '';
@@ -39,6 +54,11 @@ angular.module('plugcat.room', [
 	};
 
 	socket.on("messageIn", function(data){
+		//For anonymous change default color
+		if(data.anonym){
+			data.background = "#CBE0EA";
+		}
+
 		$scope.room.messages.push(data);
 		//Play sound
 		var audio = new Audio('/static/sounds/alert1.mp3');

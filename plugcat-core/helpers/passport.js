@@ -64,7 +64,7 @@ module.exports = exports = function(db, passport) {
 						'url':profile._json.image.url
 					}
 				};
-				userRepository.login(dbProfile, function(err, res){
+				userRepository.upsert(dbProfile, function(err, res){
 					if (err || res == 0){
 						logger.error("An error occured when trying to insert in db the user : " + dbProfile.email + "(" + JSON.stringify(dbProfile) + ")");
 			  			return done(err, null);

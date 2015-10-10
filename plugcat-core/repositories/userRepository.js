@@ -8,10 +8,12 @@ function UserRepository(db){
     var users = db.collection("users");
 
     /*
-		User log in : if user already insert in db -> just UPDATE account, else INSERT new account
+		User upsert: if user already insert in db -> just UPDATE account, else INSERT new account
+        res == 0 if error occured
+        $set : enable to add new columns, if necessary, without removing columns
     */
-    this.login = function(profile, callback){
-    	users.update({'_id':profile.email}, profile, {upsert: true}, function(err, res){
+    this.upsert = function(profile, callback){
+    	users.update({'email':profile.email}, {'$set': profile}, {upsert: true}, function(err, res){
     		return callback(err, res);
     	});
     };
@@ -20,7 +22,7 @@ function UserRepository(db){
 		Get user profile
     */
     this.getUser = function(email, callback){
-    	users.findOne({'_id':email}, function(err, profile){
+    	users.findOne({'email':email}, function(err, profile){
     		return callback(err, profile);
     	});
     };

@@ -1,4 +1,4 @@
-<div presence="MOUSE TOUCH" id="room" ng-init='joinRoom()' ng-keypress='keyPressed()'>
+<div presence="MOUSE TOUCH" id="room" ng-init='loadRoom()' ng-keypress='keyPressed()'>
 	<!--<h2 class="md-display-3">{{room.name}}</h2>-->
 
 	<div layout="row">
@@ -8,7 +8,7 @@
 					<div class='message' ng-repeat='message in room.messages'>
 						<div flex layout='column'>
 							<div>
-								<div class='content' ng-class='message.owner'>{{message.content}}</div>
+								<div class='content' ng-class='message.owner' style="background:{{message.background}}">{{message.content}}</div>
 							</div>
 							<div class='date'>
 								<span class='hour'>{{message.hour}}</span>
