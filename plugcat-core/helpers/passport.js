@@ -1,6 +1,7 @@
 const CONFIGS = require('./../configs.js');
 var logger = require('./../helpers/logger');
 var UserRepository = require("./../repositories/userRepository.js");
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = exports = function(db, passport) {
 

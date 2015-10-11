@@ -25,6 +25,7 @@ function SettingsHandler(db){
     				logger.error('Error occured when trying to save settings : ' + JSON.stringify(profile));
     				return res.sendStatus(404);
     			}
+                logger.debug("User's settings saved !", profile);
                 return res.sendStatus(200);
     		});
 		}else{

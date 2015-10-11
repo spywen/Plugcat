@@ -1,6 +1,18 @@
 {
 	"port": 8080,
 	"address": "http://localhost",
+    "logger":{
+        "console":{
+            "level":"debug"
+        },
+        "file":{
+            "level":"debug",
+            "path":"./logs/plugcat-core.log",
+            "maxsize":"5242880",
+            "maxfiles":"2"
+        },
+        "handleException":true
+    },
 	"logLevel": "debug",
 	"sessionKey": "Wj9P9FVPYYITaMT",
 	"googleAuth" : {

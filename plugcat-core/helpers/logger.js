@@ -1,21 +1,29 @@
 const CONFIGS = require('./../configs.js');
+var winston = require("winston");
 
-var fs = require('fs'), 
-    Log = require('log'), 
-    stream = fs.createWriteStream(__dirname + '/../logs/file.log', { flags: 'a' }), 
-    log = new Log(CONFIGS.logLevel, stream);
+/*
+https://github.com/winstonjs/winston
+*/
 
-module.exports = {
+var logger = new (winston.Logger)({
+    transports: [
+        new winston.transports.File({//FILE logs
+            level: CONFIGS.logger.file.level,
+            filename: CONFIGS.logger.file.path,
+            handleExceptions: CONFIGS.logger.handleException,
+            json: true,
+            maxsize: CONFIGS.logger.file.maxsize, //MB
+            maxFiles: CONFIGS.logger.file.maxfiles,
+            colorize: false
+        }),
+        new winston.transports.Console({//CONSOLE logs
+            level: CONFIGS.logger.console.level,
+            handleExceptions: CONFIGS.logger.handleException,
+            json: false,
+            colorize: true
+        })
+    ],
+    exitOnError: false
+});
 
-	error : function(message){
-		log.error(message);
-	},
-
-	info : function(message){
-		log.info(message);
-	},
-
-	debug : function(message){
-		log.debug(message);
-	}
-};
+module.exports = logger;

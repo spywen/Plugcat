@@ -12,23 +12,21 @@ var express = require('express')
     , MongoClient = require('mongodb').MongoClient;
 
 var passport = require('passport')
-	cookieParser = require('cookie-parser')
-	bodyParser = require('body-parser')
-	session = require('express-session')
-	methodOverride = require('method-override')
-    , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+	, cookieParser = require('cookie-parser')
+	, bodyParser = require('body-parser')
+	, session = require('express-session')
+	, methodOverride = require('method-override');
 
 
 // ---- LOCAL MODULES ----
 var routes = require('./routes')
     , socket = require('./helpers/socket');
 
-
 // MONGO CONTEXT INITIALIZATION
 MongoClient.connect(CONFIGS.db.address, function(err, db) {
 
 	if(err){//Connection failed : error message
-		console.log('\n!!! --> Database unreachable : %s !!!'.red, CONFIGS.db.address);
+		logger.error('!!! --> Database unreachable : %s !!!'.red, CONFIGS.db.address);
 		throw err;
 	}
 
@@ -57,7 +55,7 @@ MongoClient.connect(CONFIGS.db.address, function(err, db) {
 
 	// ---- RUN APP ----
 	server.listen(CONFIGS.port);
-	console.log("Plugcat running on %s:%s".cyan, CONFIGS.address, CONFIGS.port);
+	logger.info("Plugcat running on %s:%s".cyan, CONFIGS.address, CONFIGS.port);
 });
 
 
