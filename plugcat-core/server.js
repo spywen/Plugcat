@@ -51,7 +51,7 @@ MongoClient.connect(CONFIGS.db.address, function(err, db) {
 	routes(db, app, passport);
 
 	// ---- SOCKETS ----
-	socket(io);
+	socket(db, io);
 
 	// ---- RUN APP ----
 	server.listen(CONFIGS.port);

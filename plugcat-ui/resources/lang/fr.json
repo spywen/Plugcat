@@ -16,10 +16,16 @@
 
 
 	"HOME_SUBTITLE" : "La messagerie rapide, pour une vie à 100 à l'heure !",
-	"HOME_FIND_CREATE" : "Trouvez ou créez votre salle de discussion",
+	"HOME_FIND_CREATE" : "Trouver ou créer une salle de discussion",
 	"HOME_GO" : "Entrer",
 	"HOME_ROOM_NAME_INVALID" : "Nom de salle de discussion invalide (caractères spéciaux autorisés : #-+=_&)",
 	"HOME_PLUS_FRENCH": "Le produit du terroir <3",
 	"HOME_PLUS_SECURITY": "Sécurisé",
-	"HOME_PLUS_SIMPLE": "Simple et rapide"
+	"HOME_PLUS_SIMPLE": "Simple et rapide",
+
+	"ROOM_SEND_MESSAGE_PLACEHOLDER" : "Envoyer un message",
+	"ROOM_SEND_MESSAGE": "Envoyer",
+	"ROOM_CONNECTED_USER": "utilisateur(s) connecté(s) à cette salle",
+	"ROOM_USER_JOIN": "Un nouvel utilisateur a rejoint la salle : ",
+	"ROOM_USER_LEAVE": "Un utilisateur a quitté la salle : "
 }

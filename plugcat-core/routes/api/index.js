@@ -16,4 +16,5 @@ module.exports = exports = function(db, app) {
 
     // --- Auth ---
     app.get('/api/auth', usersHandler.getConnectedUserProfile);
+    app.get('/api/auth/token', usersHandler.getToken);
 };

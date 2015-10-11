@@ -1,40 +1,88 @@
 #room{
 	.chat{
-		.messageBox{
-			height: 15vh;
+		.roomHeader{
+			height: 50px;
+			.name{
+				h2{
+					margin:0;
+					font-size: 30px;
+					font-weight: 100;
+					padding-left: 30px;
+				}
+			}
+			.infos{
+				text-align:right;
+				font-size: 12px;
+    			color: grey;
+    			position:relative;
+    			span{
+    				position:absolute;
+    				bottom:0;
+    				right:0;
+    			}
+			}
 		}
 		.messages{
-			height: 65vh;
+			height: 57vh;
 			overflow-y: scroll;
 			.message{
-				.content{
-					max-width:60%;
-					word-wrap: break-word;
-					padding:5px 10px;
-					border-radius: 3px;
-					margin: 4px;
-					&.me{
+				.identity.anonym{
+					img{
+						margin-top: -2px;
+						margin-left: -1px;
+					}
+				}
+				.me{
+					.messageContent, .identity{
 						float:right;
 					}
-					&.other{
+				}
+				.other{
+					.messageContent, .identity{
 						float:left;
+					}
+				}
+				.me, .other{
+					.messageContent{
+						max-width:60%;
+						.content{
+							word-wrap: break-word;
+							padding:5px 10px;
+							border-radius: 3px;
+							margin: 4px;
+						}
+						.date{
+							padding-left: 5px;
+							position: relative;
+							top: -8px;
+							color: #ADABAB;
+							.hour{
+								font-size: 11px;
+				    			font-weight: bold;
+							}
+							.day{
+								font-size: 9px;
+							}
+						}
 					}
 					clear:both;
 				}
-				.date{
-					padding-left: 5px;
-					position: relative;
-					top: -8px;
-					color: #ADABAB;
-					.hour{
-						font-size: 11px;
-		    			font-weight: bold;
-					}
-					.day{
-						font-size: 9px;
-					}
+				.info{
+					font-size: 13px;
+    				color: gray;
+    				padding: 1px;
+    				padding-left: 5px;
+    				i.fa-arrow-circle-o-left{
+    					color:#E91E63;
+    				}
+    				i.fa-arrow-circle-o-right{
+    					color:#4CAF50;
+    				}
 				}
 			}
+		}
+		.messageBox{
+			height: 15vh;
 		}
 	}
 }

@@ -1,33 +1,57 @@
 <div presence="MOUSE TOUCH" id="room" ng-init='loadRoom()' ng-keypress='keyPressed()'>
-	<!--<h2 class="md-display-3">{{room.name}}</h2>-->
-
-	<div layout="row">
-		<div flex="75">
+	<div layout="row" layout-sm="column">
+		<div flex="75" flex-sm="100">
 			<div layout="column" class='chat' layout-padding>
+				<div flex layout="row" class="roomHeader">
+					<div flex class="name">
+						<h2>{{room.name}}</h2>
+					</div>
+					<div flex class="infos">
+						<span>{{users.length}} {{'ROOM_CONNECTED_USER' | translate}}</span>
+					</div>
+				</div>
 				<div flex layout='column' class="messages" id="messages" keep-scroll-bot="room.messages">
+					<!-- One message block define here -->
 					<div class='message' ng-repeat='message in room.messages'>
-						<div flex layout='column'>
-							<div>
-								<div class='content' ng-class='message.owner' style="background:{{message.background}}">{{message.content}}</div>
+						<div flex ng-class='message.iAmOwner ? "me" : "other"'>
+							<div ng-show="message.type !== 'info'">
+								<div class="identity" ng-class="message.owner.anonym ? 'anonym' : ''">
+									<md-button class="md-icon-button" aria-label="Owner">
+										<img alt="Logo" class="avatar" ng-src="{{message.owner.avatar}}"/>
+										<md-tooltip>
+									        {{message.owner.publicName}}
+									    </md-tooltip>
+									</md-button>
+								</div>
+								<div class="messageContent">
+									<div class="background">
+										<div class='content' style="background:{{message.owner.background}};color:{{message.owner.foreground}}">{{message.content}}</div>
+									</div>
+									<div class='date'>
+										<span class='hour'>{{message.date.hour}}</span>
+										<span class='day'>{{message.date.day}}</span>
+									</div>
+								</div>
 							</div>
-							<div class='date'>
-								<span class='hour'>{{message.hour}}</span>
-								<span class='day'>{{message.day}}</span>
+							<div ng-show="message.type === 'info'">
+								<div class="info">
+									<i ng-class="message.event === 'leave' ? 'fa-arrow-circle-o-left' : 'fa-arrow-circle-o-right'" class="fa"></i> {{message.content}}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div flex class="messageBox" layout="row" layout-sm="column" layout-align-sm="space-around center" layout-align="center center">
-					<md-input-container flex>
-						<label>Send a message</label>
+				<div flex class="messageBox" layout="row" layout-margin layout-sm="column" layout-align="center center" layout-align-sm="center start">
+					<md-input-container flex="90">
+						<label>{{'ROOM_SEND_MESSAGE_PLACEHOLDER' | translate}}</label>
 						<input presence="KEYBOARD" class='messageInput' ng-model="newMessageContent" autofocus="autofocus">
 					</md-input-container>
-				    <md-button class="md-raised md-primary" ng-click="sendMessage()" ng-disabled='newMessageContent.length === 0'>Send</md-button>
+				    <md-button class="md-raised md-primary" ng-click="sendMessage()" ng-disabled='newMessageContent.length === 0' flex="10">{{'ROOM_SEND_MESSAGE' | translate}}</md-button>
 				</div>
 			</div>
 		</div>
-		<div flex="25">
-			nothing for the moment
+		<div flex="25" flex-sm="100">
+			
 		</div>
 	</div>
 </div>

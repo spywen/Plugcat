@@ -20,5 +20,11 @@
 	"HOME_ROOM_NAME_INVALID" : "Invalid room name (Special charakters allowed: #-+=_&)",
 	"HOME_PLUS_FRENCH": "French touch <3",
 	"HOME_PLUS_SECURITY": "Security",
-	"HOME_PLUS_SIMPLE": "Quick and simple"
+	"HOME_PLUS_SIMPLE": "Quick and simple",
+
+	"ROOM_SEND_MESSAGE_PLACEHOLDER" : "Send a message",
+	"ROOM_SEND_MESSAGE": "Send",
+	"ROOM_CONNECTED_USER": "connected user(s) inside this room",
+	"ROOM_USER_JOIN": "New user joined the room: ",
+	"ROOM_USER_LEAVE": "An user left the room: "
 }

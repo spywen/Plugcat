@@ -2,7 +2,7 @@
 	<md-toolbar>
 		<div class="md-toolbar-tools">
 			<md-button class="md-icon-button" aria-label="Settings">
-				<md-icon md-svg-icon="static/img/plugcat_white_30x30.svg"></md-icon>
+				<img alt="Logo" class="avatar" ng-src="static/img/plugcat_white_40x40.png"/>
 			</md-button>
 			<h2>
 				<span>
@@ -35,8 +35,8 @@
 
 			<!-- User logged in -->
 			<md-menu md-position-mode="target-right target" ng-show="user">
-				<md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu()">
-					<img alt="Avatar" class="avatar" data-ng-src="{{user.avatar.url}}"/>
+				<md-button class="md-icon-button" aria-label="Connected user" ng-click="$mdOpenMenu()">
+					<img alt="Avatar" class="avatar" ng-src="{{user.avatar.url}}"/>
 				</md-button>
 				<md-menu-content width="3">
 					<md-menu-item>
