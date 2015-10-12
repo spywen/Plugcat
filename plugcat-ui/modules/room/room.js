@@ -98,7 +98,7 @@ angular.module('plugcat.room', [
     	var info = {
     		type:'info',
     		event:'join',
-    		content:$translate.instant('ROOM_USER_JOIN') + data.profile.publicName
+    		publicName: data.profile.publicName
     	};
     	$scope.room.messages.push(info);
     });
@@ -109,7 +109,7 @@ angular.module('plugcat.room', [
     	var info = {
     		type:'info',
     		event:'leave',
-    		content:$translate.instant('ROOM_USER_LEAVE') + data.profile.publicName
+    		publicName: data.profile.publicName
     	};
     	$scope.room.messages.push(info);
     });
@@ -136,7 +136,7 @@ angular.module('plugcat.room', [
 	document.onkeydown = function(e) {
 	  	document.querySelector(".messageInput").focus();
 	};
-}).directive('keepScrollBot', function () {
+}).directive('keepScrollBot', function ($timeout) {
   return {
     scope: {
       keepScrollBot: "="
@@ -145,7 +145,9 @@ angular.module('plugcat.room', [
       $scope.$watchCollection('keepScrollBot', function (newValue) {
         if (newValue)
         {
-          	$element[0].scrollTop = $element[0].scrollHeight;
+        	$timeout(function(){
+        		$element[0].scrollTop = $element[0].scrollHeight;
+        	}, 0);
         }
       });
     }

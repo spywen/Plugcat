@@ -1,88 +1,113 @@
+@header-height:   60px;
+@footer-height:   100px;
+@left-part-width:80%;
+
 #room{
+	.header{
+		padding: 10px;
+		position: absolute; 
+		width: @left-part-width; 
+		height: @header-height;
+		left: 0; 
+		right: 0; 
+		top: 0; 
+		bottom: 0;
+
+		.name{
+			h2{
+				margin:0;
+				font-size: 30px;
+				font-weight: 100;
+				padding-left: 10px;
+			}
+		}
+		.infos{
+			text-align:right;
+			font-size: 12px;
+			color: grey;
+			position:relative;
+			span{
+				position:absolute;
+				bottom:0;
+				right:0;
+			}
+		}
+	}
 	.chat{
-		.roomHeader{
-			height: 50px;
-			.name{
-				h2{
-					margin:0;
-					font-size: 30px;
-					font-weight: 100;
-					padding-left: 30px;
+		padding:10px;
+		position: absolute; 
+		width: @left-part-width; 
+		height: auto;
+		left: 0; 
+		right: 0; 
+		top: @header-height; 
+		bottom: @footer-height;
+		overflow-y:auto;
+
+		.message{
+			.identity.anonym{
+				img{
+					margin-top: -2px;
+					margin-left: -1px;
 				}
 			}
-			.infos{
-				text-align:right;
-				font-size: 12px;
-    			color: grey;
-    			position:relative;
-    			span{
-    				position:absolute;
-    				bottom:0;
-    				right:0;
-    			}
+			.me{
+				.messageContent, .identity{
+					float:right;
+				}
 			}
-		}
-		.messages{
-			height: 57vh;
-			overflow-y: scroll;
-			.message{
-				.identity.anonym{
-					img{
-						margin-top: -2px;
-						margin-left: -1px;
-					}
+			.other{
+				.messageContent, .identity{
+					float:left;
 				}
-				.me{
-					.messageContent, .identity{
-						float:right;
+			}
+			.me, .other{
+				.messageContent{
+					max-width:60%;
+					.content{
+						word-wrap: break-word;
+						padding:5px 10px;
+						border-radius: 3px;
+						margin: 4px;
 					}
-				}
-				.other{
-					.messageContent, .identity{
-						float:left;
-					}
-				}
-				.me, .other{
-					.messageContent{
-						max-width:60%;
-						.content{
-							word-wrap: break-word;
-							padding:5px 10px;
-							border-radius: 3px;
-							margin: 4px;
+					.date{
+						padding-left: 5px;
+						position: relative;
+						top: -8px;
+						color: #ADABAB;
+						.hour{
+							font-size: 11px;
+			    			font-weight: bold;
 						}
-						.date{
-							padding-left: 5px;
-							position: relative;
-							top: -8px;
-							color: #ADABAB;
-							.hour{
-								font-size: 11px;
-				    			font-weight: bold;
-							}
-							.day{
-								font-size: 9px;
-							}
+						.day{
+							font-size: 9px;
 						}
 					}
-					clear:both;
 				}
-				.info{
-					font-size: 13px;
-    				color: gray;
-    				padding: 1px;
-    				padding-left: 5px;
-    				i.fa-arrow-circle-o-left{
-    					color:#E91E63;
-    				}
-    				i.fa-arrow-circle-o-right{
-    					color:#4CAF50;
-    				}
+				clear:both;
+			}
+			.info{
+				font-size: 13px;
+				color: gray;
+				padding: 1px;
+				padding-left: 5px;
+				i.fa-arrow-circle-o-left{
+					color:#E91E63;
+				}
+				i.fa-arrow-circle-o-right{
+					color:#4CAF50;
 				}
 			}
 		}
-		.messageBox{
-			height: 15vh;
-		}
+	}
+	.footer{
+		position: absolute; 
+		padding: 0px 30px;
+		width: @left-part-width; 
+		height: @footer-height;
+		left: 0; 
+		right: 0; 
+		top: calc(~'100% - 120px'); 
+		bottom: 0;
 	}
 }
