@@ -1,6 +1,7 @@
 angular.module('plugcat.home', [
 	'ngRoute',
-	'ngMessages'
+	'ngMessages',
+	'cfp.hotkeys'
 ])
 .config(function ($routeProvider){
     $routeProvider.when("/",{
@@ -13,13 +14,22 @@ angular.module('plugcat.home', [
 	return {
 		roomPath: "/room/"
 	};
-}).controller('homeCtrl', function($scope, $location, homeVar, $timeout){
+}).controller('homeCtrl', function($scope, $location, homeVar, $timeout, hotkeys){
 	$scope.goToRoom = function(){
 		if($scope.room.name.length > 0){
 
 			$location.path(homeVar.roomPath + $scope.room.name.trim());
 		}
 	};
+
+	hotkeys.add({
+		combo: 'enter',
+		allowIn: ['INPUT', 'TEXTAREA'],
+		callback: function() {
+			$scope.goToRoom();
+			event.preventDefault();
+		}
+	});
 
 	document.onkeydown = function(e) {
 	  	document.querySelector(".roomInput").focus();

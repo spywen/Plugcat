@@ -21,7 +21,7 @@ angular.module('plugcat',[
 	RestangularProvider.setBaseUrl('api/');
 	cfpLoadingBarProvider.latencyThreshold = 0;
 	cfpLoadingBarProvider.includeBar = true;
-	cfpLoadingBarProvider.includeSpinner = true;
+	cfpLoadingBarProvider.includeSpinner = false;
 	$plugsocketProvider.init(window.location.origin);
 })
 .run(function($rootScope, plugsocket) {

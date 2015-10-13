@@ -125,7 +125,6 @@ angular.module('plugcat.room', [
 
     hotkeys.add({
 		combo: 'enter',
-		description: 'Send your message',
 		allowIn: ['INPUT', 'TEXTAREA'],
 		callback: function() {
 			$scope.sendMessage();
@@ -136,6 +135,7 @@ angular.module('plugcat.room', [
 	document.onkeydown = function(e) {
 	  	document.querySelector(".messageInput").focus();
 	};
+
 }).directive('keepScrollBot', function ($timeout) {
   return {
     scope: {
