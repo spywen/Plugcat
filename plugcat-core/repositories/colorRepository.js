@@ -11,9 +11,9 @@ function ColorRepository(db){
 		Get colors
     */
     this.getColors = function(callback){
-    	colors.find({},function(err, colors){
-            return colors.toArray(callback);
-    	});
+        colors.find().sort({sortOrder:1}).toArray(function(err, colors){
+            return callback(err, colors);
+        });
     };
 }
 

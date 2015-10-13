@@ -30,6 +30,8 @@ module.exports = exports = function(db, io) {
 		//DISCONNECTION
 		socket.on('disconnect', function(){
 
+			logger.debug("Deconnection (anonym: "+ socket.profile.anonym +") to the room : " + socket.room);
+
 			if(!_.isUndefined(rooms[socket.room])){
 				//Remove user from the room
 				_.pull(rooms[socket.room].users, socket.profile);
@@ -38,13 +40,10 @@ module.exports = exports = function(db, io) {
 				//Leave properly the room
 		        socket.leave(socket.room);
 			}
-			
-			logger.debug("User disconnected");
 		});
 
 		//JOINED
 	    socket.on('joinRoom', function (data) {
-	    	logger.debug("User connected");
 	    	socket.room = data.roomName;
 	    	var token = data.token;
 
@@ -66,12 +65,14 @@ module.exports = exports = function(db, io) {
 		    				token: token,
 		    				anonym:true,
 		    				publicName:'Anonym',
-		    				background:'#CBEACB',
-		    				foreground:'#000000',
-		    				avatar:'/static/img/plugcat_anonym_50.png'
+		    				background:_.result(_.findWhere(colors, {'default':true}), 'background'),
+		    				foreground:_.result(_.findWhere(colors, {'default':true}), 'foreground'),
+		    				avatar:'/static/img/plugcat_anonym_50_Teal.png'
 		    			};
 		    		}
 		    	});
+
+		    	logger.debug("Connection (anonym: "+ socket.profile.anonym +") to the room : " + socket.room);
 
 		        if(rooms[socket.room] != undefined){//Add user profile to the room if already exists
 		            socket.join(socket.room);

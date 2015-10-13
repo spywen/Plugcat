@@ -18,7 +18,7 @@
    inkscape:export-filename="/Users/laurent/Documents/Github/Plugcat/plugcat-ui/resources/img/plugcat_anonym_50.png"
    inkscape:export-xdpi="6.0476189"
    inkscape:export-ydpi="6.0476189"
-   sodipodi:docname="plugcat_anonym_50.svg">
+   sodipodi:docname="plugcat_anonym_50_Teal.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -29,13 +29,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.35"
-     inkscape:cx="-72.142857"
+     inkscape:cx="-747.85714"
      inkscape:cy="177.14286"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1280"
-     inkscape:window-height="755"
+     inkscape:window-height="751"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
@@ -57,7 +57,7 @@
      inkscape:label="Calque 2"
      style="display:inline">
     <rect
-       style="opacity:1;fill:#cbeacb;fill-opacity:1"
+       style="opacity:1;fill:#009688;fill-opacity:1"
        id="rect4145"
        width="814.28571"
        height="808.57141"

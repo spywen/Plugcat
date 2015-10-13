@@ -1,7 +1,18 @@
 #home{
+	.header{
+		h1{
+			@media screen and (max-width: 600px) { font-size: 80px; } 
+		}
+		h2{
+			@media screen and (min-width: 600px) { font-size: 30px; } 
+			@media screen and (max-width: 600px) { font-size: 15px; } 
+		}
+	}
+}
+
+#home{
 	background-color:#75C7E0;
 	color:white;
-
 	
 	.header{
 		margin-bottom: 50px;
@@ -11,7 +22,6 @@
 			text-shadow:1px 1px 5px rgba(0,0,0,0.52);
 		}
 		h2{
-			font-size: 30px;
 		    font-weight: 100;
 		    margin: 10px;
 		}

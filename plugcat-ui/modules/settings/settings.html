@@ -31,7 +31,7 @@
 						        <md-select ng-model="settings.color" aria-label="Message background color" >
 									<md-option ng-repeat="color in colors" value="{{color.background}}" style="color:{{color.background}}">
 										<i class="fa fa-circle" style="color:{{color.background}}"></i>
-										&nbsp;{{color.name}}
+										&nbsp;{{color.name}} {{color.default ? '(default)' : ''}}
 									</md-option>
 						        </md-select>
 							</md-input-container>

@@ -17,6 +17,12 @@
 	width: auto; 
 	left: 0; 
 	right: 0; 
-	top: 64px; 
+	
 	bottom: 0;
 }
+
+.view{
+	@media screen and (min-width: 600px) { top: 64px;  } 
+	@media screen and (max-width: 600px) { top: 56px; } 
+}
+

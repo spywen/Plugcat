@@ -1,12 +1,20 @@
 @header-height:   60px;
 @footer-height:   100px;
 @left-part-width:80%;
+@left-part-width-mobile:100%;
+
+
+#room{
+	.header, .chat, .footer{
+		@media screen and (max-width: 600px) { width: @left-part-width-mobile; }
+		@media screen and (min-width: 600px) { width: @left-part-width; }	 
+	}
+}
 
 #room{
 	.header{
 		padding: 10px;
 		position: absolute; 
-		width: @left-part-width; 
 		height: @header-height;
 		left: 0; 
 		right: 0; 
@@ -36,7 +44,6 @@
 	.chat{
 		padding:10px;
 		position: absolute; 
-		width: @left-part-width; 
 		height: auto;
 		left: 0; 
 		right: 0; 
@@ -103,7 +110,6 @@
 	.footer{
 		position: absolute; 
 		padding: 0px 30px;
-		width: @left-part-width; 
 		height: @footer-height;
 		left: 0; 
 		right: 0; 

@@ -8,17 +8,26 @@ angular.module('plugcat.settings', [
     $routeProvider.when("/settings",{
     	title: 'Plugcat',
         controller: 'settingsCtrl',
-        templateUrl: "settings.html"
+        templateUrl: "settings.html",
+        resolve: {
+        	colors: function(colorsService, plugtoast, $translate){
+        		return colorsService.findAll().then(function(colors){
+        			return colors;
+        		}, function(){
+					plugtoast.error($translate.instant('GENERIC_ERROR'));
+				});
+        	}
+        }
     });
 })
-.controller('settingsCtrl',function($scope, settingsService, plugtoast, $translate, colorsService, authManager){
+.controller('settingsCtrl',function($scope, colors, settingsService, plugtoast, $translate, authManager){
 
 	$scope.settings = {
 		publicName: _.isUndefined(window.user.publicName) ? window.user.givenName : window.user.publicName,
-		color: _.isUndefined(window.user.color) ? {} : window.user.color
+		color: _.isUndefined(window.user.color) ? _.result(_.findWhere(colors, {'default':true}), 'background') : window.user.color
 	};
+	$scope.colors = colors;
 
-	$scope.colors = [];
 
 	$scope.submit = function(){
 		settingsService.save($scope.settings).then(function(profile){
@@ -26,14 +35,6 @@ angular.module('plugcat.settings', [
 			//Refresh window.user
 			authManager.refreshUserConnected();
 		},function(){
-			plugtoast.error($translate.instant('GENERIC_ERROR'));
-		});
-	};
-
-	$scope.loadColors = function(){
-		colorsService.findAll().then(function(colors){
-			$scope.colors = colors;
-		}, function(){
 			plugtoast.error($translate.instant('GENERIC_ERROR'));
 		});
 	};
