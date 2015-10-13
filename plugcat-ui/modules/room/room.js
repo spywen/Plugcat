@@ -1,5 +1,4 @@
 angular.module('plugcat.room', [
-	'plugcat.socket',
 	'cfp.hotkeys',
 	'pascalprecht.translate',
 	'plugcat.favico',
@@ -11,6 +10,7 @@ angular.module('plugcat.room', [
 .config(function ($routeProvider){
     $routeProvider.when("/room/:name",{
     	title: 'Loading - Plugcat',
+    	from:"room",
         controller: 'roomCtrl',
         templateUrl: "room.html",
         resolve:{
@@ -20,7 +20,7 @@ angular.module('plugcat.room', [
         }
     });
 })
-.controller('roomCtrl', function($scope, $translate, $rootScope, $routeParams, socket, hotkeys, favico, presence, authManager, colorsService, token){
+.controller('roomCtrl', function($scope, $translate, $rootScope, $routeParams, plugsocket, hotkeys, favico, presence, authManager, colorsService, token){
 	
 	//Set page title :
 	$rootScope.title = $routeParams.name + ' - Plugcat';
@@ -44,7 +44,7 @@ angular.module('plugcat.room', [
 	//Load room
 	$scope.loadRoom = function(){
 		//Join room
-		socket.emit("joinRoom", {roomName: $routeParams.name, token: token});
+		plugsocket.emit("joinRoom", {roomName: $routeParams.name, token: token});
 
 		//Get colors
 		colorsService.findAll().then(function(colors){
@@ -63,12 +63,12 @@ angular.module('plugcat.room', [
 			};
 			//$scope.room.messages.push(newMessage);
 			$scope.newMessageContent = '';
-			socket.emit("messageOut", newMessage);
+			plugsocket.emit("messageOut", newMessage);
 		}
 	};
 
 	//Message received
-	socket.on("messageIn", function(message){
+	plugsocket.on("messageIn", function(message){
 		message.iAmOwner = false;
 
 		$scope.room.messages.push(message);
@@ -82,18 +82,18 @@ angular.module('plugcat.room', [
     });
 
     //Message sended by the user himself
-    socket.on("messageSended", function(message){
+    plugsocket.on("messageSended", function(message){
     	message.iAmOwner = true;
 		$scope.room.messages.push(message);
     });
 
     //Get room info
-    socket.on("roomInfo", function(room){
+    plugsocket.on("roomInfo", function(room){
     	$scope.users = room.users;
     });
 
 	//User joined the room
-    socket.on("userJoined", function(data){
+    plugsocket.on("userJoined", function(data){
     	$scope.users = data.room.users;
     	var info = {
     		type:'info',
@@ -104,7 +104,7 @@ angular.module('plugcat.room', [
     });
 
     //User left the room
-    socket.on("userLeft", function(data){
+    plugsocket.on("userLeft", function(data){
     	$scope.users = data.room.users;
     	var info = {
     		type:'info',

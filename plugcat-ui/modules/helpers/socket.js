@@ -1,28 +1,38 @@
 angular.module('plugcat.socket', [])
-.factory('socket', function ($rootScope, $location) {
-    var socket = io.connect($location.protocol() + "://" + $location.host() + ":" + $location.port());
+.provider('$plugsocket', function () {
+    var socket;
+    return {
+        init:function(url){
+            socket = io.connect(url);
+        },
+
+        $get: function(){
+            return socket;
+        }
+    };
+}).factory('plugsocket', function($rootScope, $location, $plugsocket){
     return {
         on: function (eventName, callback) {
             function wrapper() {
                 var args = arguments;
                 $rootScope.$apply(function () {
-                    callback.apply(socket, args);
+                    callback.apply($plugsocket, args);
                 });
             }
  
-            socket.on(eventName, wrapper);
+            $plugsocket.on(eventName, wrapper);
  
             return function () {
-                socket.removeListener(eventName, wrapper);
+                $plugsocket.removeListener(eventName, wrapper);
             };
         },
  
         emit: function (eventName, data, callback) {
-            socket.emit(eventName, data, function () {
+            $plugsocket.emit(eventName, data, function () {
                 var args = arguments;
                 $rootScope.$apply(function () {
                     if(callback) {
-                        callback.apply(socket, args);
+                        callback.apply($plugsocket, args);
                     }
                 });
             });

@@ -29,17 +29,11 @@ module.exports = exports = function(db, io) {
 
 		//DISCONNECTION
 		socket.on('disconnect', function(){
+			disconnect(socket);
+		});
 
-			logger.debug("Deconnection (anonym: "+ socket.profile.anonym +") to the room : " + socket.room);
-
-			if(!_.isUndefined(rooms[socket.room])){
-				//Remove user from the room
-				_.pull(rooms[socket.room].users, socket.profile);
-				//Inform room
-				socket.broadcast.to(socket.room).emit('userLeft', {profile: socket.profile, room: rooms[socket.room]});
-				//Leave properly the room
-		        socket.leave(socket.room);
-			}
+		socket.on('forceDisconnection', function(){
+			disconnect(socket);
 		});
 
 		//JOINED
@@ -104,4 +98,17 @@ module.exports = exports = function(db, io) {
 	    });
 
 	});
+
+	function disconnect(socket){
+		if(!_.isUndefined(rooms[socket.room])){
+			logger.debug("Disconnection (anonym: "+ socket.profile.anonym +") from the room : " + socket.room);
+
+			//Remove user from the room
+			_.pull(rooms[socket.room].users, socket.profile);
+			//Inform room
+			socket.broadcast.to(socket.room).emit('userLeft', {profile: socket.profile, room: rooms[socket.room]});
+			//Leave properly the room
+	        socket.leave(socket.room);
+		}
+	}
 };
