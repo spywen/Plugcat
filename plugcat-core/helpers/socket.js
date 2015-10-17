@@ -44,6 +44,7 @@ module.exports = exports = function(db, io) {
 	    socket.on('joinRoom', function (data, callback) {
 	    	socket.room = data.roomName;
 	    	var token = data.token;
+	    	logger.debug(token);
 
 			colorRepository.getColors(function(err, colors){
 				//Manage user profile :

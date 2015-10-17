@@ -53,7 +53,7 @@ function UsersHandler(db){
                 });
             });
         }else{
-            return res.send('');
+            return res.send(uuid.v1());
         }
     };
 }

@@ -23,6 +23,25 @@ angular.module('plugcat.room', [
         }
     });
 })
+.directive('videoPlayer', function ($sce) {
+    return {
+      template: '<div><video ng-src="{{trustSrc()}}" autoplay></video></div>',
+      restrict: 'E',
+      replace: true,
+      scope: {
+        vidSrc: '@'
+      },
+      link: function (scope) {
+        console.log('Initializing video-player');
+        scope.trustSrc = function () {
+          if (!scope.vidSrc) {
+            return undefined;
+          }
+          return $sce.trustAsResourceUrl(scope.vidSrc);
+        };
+      }
+    };
+  })
 .controller('roomCtrl', function(VideoStream, $sce, 		 $scope, $translate, $rootScope, $routeParams, plugsocket, hotkeys, favico, presence, authManager, colorsService, token, plugtoast){
 	
 
@@ -35,7 +54,7 @@ angular.module('plugcat.room', [
 
     var iceConfig = { 'iceServers': [{ 'url': 'stun:stun.l.google.com:19302' }]},
         peerConnections = {},
-        currentId, roomId,
+        roomId,
         stream,
         streamUrl;
 
@@ -51,21 +70,22 @@ angular.module('plugcat.room', [
     });
 
     function getPeerConnection(id) {
-      /*if (peerConnections[id]) {
+      if (peerConnections[id]) {
         return peerConnections[id];
-      }*/
+      }
       var pc = new RTCPeerConnection(iceConfig);
       peerConnections[id] = pc;
       pc.addStream(stream);
       pc.onicecandidate = function (evnt) {
-        plugsocket.emit('msg', { by: currentId, to: id, ice: evnt.candidate, type: 'ice' });
+        plugsocket.emit('msg', { by: token, to: id, ice: evnt.candidate, type: 'ice' });
       };
       pc.onaddstream = function (evnt) {
         console.log('Received new stream');
-        $scope.peers.push({
+        var peer = {
             id: id,
-            stream: $sce.trustAsResourceUrl(URL.createObjectURL(evnt.stream))
-        });
+            stream: URL.createObjectURL(evnt.stream)
+        };
+        $scope.peers.push(peer);
         /*api.trigger('peer.stream', [{
           id: id,
           stream: evnt.stream
@@ -82,8 +102,9 @@ angular.module('plugcat.room', [
       pc.createOffer(function (sdp) {
         pc.setLocalDescription(sdp);
         console.log('Creating an offer for', id);
-        plugsocket.emit('msg', { by: currentId, to: id, sdp: sdp, type: 'sdp-offer' });
+        plugsocket.emit('msg', { by: token, to: id, sdp: sdp, type: 'sdp-offer' });
       }, function (e) {
+        console.log("error 1");
         console.log(e);
       },
       { mandatory: { offerToReceiveVideo: true, offerToReceiveAudio: true }});
@@ -97,11 +118,13 @@ angular.module('plugcat.room', [
             console.log('Setting remote description by offer');
             pc.createAnswer(function (sdp) {
               pc.setLocalDescription(sdp);
-              plugsocket.emit('msg', { by: currentId, to: data.by, sdp: sdp, type: 'sdp-answer' });
+              plugsocket.emit('msg', { by: token, to: data.by, sdp: sdp, type: 'sdp-answer' });
             }, function (e) {
+              console.log("error 2");
               console.log(e);
             });
           }, function (e) {
+            console.log("error 3");
             console.log(e);
           });
           break;
@@ -109,7 +132,8 @@ angular.module('plugcat.room', [
           pc.setRemoteDescription(new RTCSessionDescription(data.sdp), function () {
             console.log('Setting remote description by answer');
           }, function (e) {
-            console.error(e);
+            console.log("error 4");
+            console.log(e);
           });
           break;
         case 'ice':
@@ -129,7 +153,10 @@ angular.module('plugcat.room', [
     };
 
     $scope.startConf = function(){
-        makeOffer(token);
+        var tokens = _.find($scope.users, function(user) {
+            return user.token != token;
+        });
+        makeOffer(tokens.token);
     };
 
     plugsocket.on('msg', function(data){
@@ -190,9 +217,9 @@ angular.module('plugcat.room', [
 			};
 			$scope.newMessageContent = '';
 			plugsocket.emit("messageOut", newMessage, function(message){
-                message.iAmOwner = true;
-                $scope.room.messages.push(message);
-            });
+          message.iAmOwner = true;
+          $scope.room.messages.push(message);
+      });
 		}
 	};
 

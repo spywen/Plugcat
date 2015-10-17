@@ -54,7 +54,7 @@
 		</md-button>
 	</div>
 	<div class="plugBox">
-		<video class="localVideo" ng-src="{{getLocalVideo()}}" autoplay muted></video>
-		<video class="otherVideo" ng-repeat="peer in peers" ng-src="{{peer.stream}}"></video>
+		<video class="localVideo videoWindow" ng-src="{{getLocalVideo()}}" autoplay muted></video>
+		<video-player class="othersVideo videoWindow" ng-repeat="p in peers" vid-src="{{p.stream}}"></video-player>
 	</div>
 </div>
