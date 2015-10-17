@@ -1,15 +1,8 @@
 @header-height:   60px;
 @footer-height:   100px;
+@right-part-width:20%;
 @left-part-width:80%;
 @left-part-width-mobile:100%;
-
-
-#room{
-	.header, .chat, .footer{
-		@media screen and (max-width: 600px) { width: @left-part-width-mobile; }
-		@media screen and (min-width: 600px) { width: @left-part-width; }	 
-	}
-}
 
 #room{
 	.header{
@@ -72,6 +65,7 @@
 			.me, .other{
 				.messageContent{
 					max-width:60%;
+					min-width: 100px;
 					.content{
 						word-wrap: break-word;
 						padding:5px 10px;
@@ -116,5 +110,29 @@
 		right: 0; 
 		top: calc(~'100% - 120px'); 
 		bottom: 0;
+	}
+	.plugBox{
+		position: absolute;
+		padding: 0px 30px;
+		height: auto;
+		width:@right-part-width;
+		left: 80%; 
+		right: 0; 
+		top: 0; 
+		bottom: 0;
+		margin:0;
+		padding:0;
+		.localVideo{
+			width:100%;
+		}
+	}
+}
+
+
+/* --- RESPONSIVE --- */
+#room{
+	.header, .chat, .footer{
+		@media screen and (max-width: 600px) { width: @left-part-width-mobile; }
+		@media screen and (min-width: 600px) { width: @left-part-width; }	 
 	}
 }

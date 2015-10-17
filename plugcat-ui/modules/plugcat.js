@@ -1,6 +1,7 @@
 angular.module('plugcat',[
 	'ngRoute',
 	'ngMaterial',
+	'ngAnimate',
 	'restangular',
 	'plugcat.socket',
 	'plugcat.plugconsts',

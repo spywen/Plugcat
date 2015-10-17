@@ -29,7 +29,8 @@
     "favico.js": "0.3.9",
     "angular-presence": "0.2.0",
     "restangular": "1.5.1",
-    "angular-loading-bar": "0.8.0"
+    "angular-loading-bar": "0.8.0",
+    "angular-animate": "~1.4.7"
   },
   "devDependencies": {
     "angular-mocks": "1.4.3"
@@ -103,6 +104,15 @@
       "main": {
         "dev": "animate.css",
         "prod": "animate.min.css"
+      }
+    },
+    "angular-animate": {
+      "main": {
+        "dev": "angular-animate.js",
+        "prod": [
+          "angular-animate.min.js",
+          "angular-animate.min.js.map"
+        ]
       }
     },
     "font-awesome": {

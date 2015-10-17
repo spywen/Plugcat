@@ -15,9 +15,7 @@ var _ = require('lodash')
 	@@@ Send:
 	- userLeft : one user left the room
 	- userJoined : one user joined the room
-	- roomInfo : info about a room for a just joined user
 	- messageIn : message sended to a room
-	- messageSended : message sended to the sender (server need to compute some values before to display it on the sender screen)
 */
 module.exports = exports = function(db, io) {
 
@@ -36,8 +34,14 @@ module.exports = exports = function(db, io) {
 			disconnect(socket);
 		});
 
+		//WEB RTC TRANSFER MSG
+		socket.on('msg', function(data){
+			logger.debug('MSG');
+			socket.broadcast.to(socket.room).emit('msg', data);
+		});
+
 		//JOINED
-	    socket.on('joinRoom', function (data) {
+	    socket.on('joinRoom', function (data, callback) {
 	    	socket.room = data.roomName;
 	    	var token = data.token;
 
@@ -69,23 +73,21 @@ module.exports = exports = function(db, io) {
 		    	logger.debug("Connection (anonym: "+ socket.profile.anonym +") to the room : " + socket.room);
 
 		        if(rooms[socket.room] != undefined){//Add user profile to the room if already exists
-		            socket.join(socket.room);
 		            rooms[socket.room].users.push(socket.profile);
-		            socket.broadcast.to(socket.room).emit('userJoined', {profile: socket.profile, room: rooms[socket.room]});
-		        	socket.emit('roomInfo', rooms[socket.room]);
 		        }else{//Create room
 		            rooms[socket.room] = {name: socket.room, users:[socket.profile]};
-		            socket.join(socket.room);
-		            socket.broadcast.to(socket.room).emit('userJoined', {profile: socket.profile, room: rooms[socket.room]});
-		            socket.emit('roomInfo', rooms[socket.room]);
 		        }
+
+		        socket.join(socket.room);
+	            socket.broadcast.to(socket.room).emit('userEvent', {type: "join", profile: socket.profile, room: rooms[socket.room]});
+	            callback(rooms[socket.room]);
 			});
 
 	    	
 	    });
 
 		//MESSAGE SEND
-	    socket.on('messageOut', function (message) {
+	    socket.on('messageOut', function (message, callback) {
 	    	message.owner = socket.profile;
 	    	message.date = { 
 	    		hour: moment().format("HH:mm"),
@@ -94,7 +96,7 @@ module.exports = exports = function(db, io) {
 	        //Send message to all the participants
 	        socket.broadcast.to(socket.room).emit('messageIn', message);
 	        //Send the same message to the owner to confirm that the message is sended
-	        socket.emit('messageSended', message);
+	        callback(message);
 	    });
 
 	});
@@ -106,7 +108,7 @@ module.exports = exports = function(db, io) {
 			//Remove user from the room
 			_.pull(rooms[socket.room].users, socket.profile);
 			//Inform room
-			socket.broadcast.to(socket.room).emit('userLeft', {profile: socket.profile, room: rooms[socket.room]});
+			socket.broadcast.to(socket.room).emit('userEvent', {type:"leave", profile: socket.profile, room: rooms[socket.room]});
 			//Leave properly the room
 	        socket.leave(socket.room);
 		}

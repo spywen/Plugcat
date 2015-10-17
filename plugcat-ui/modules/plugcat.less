@@ -1,3 +1,5 @@
+/* ----- LOADING BAR -----*/
+
 #loading-bar .bar {
 	background: #FFFFFF;
 	height: 4px;
@@ -10,6 +12,8 @@
 	border-left-color: #FFFFFF;
 }
 
+/* ----- ANGULAR ROUTE VIEW -----*/
+
 .view{
 	padding-top:20px;
 	position:absolute;
@@ -17,12 +21,51 @@
 	width: auto; 
 	left: 0; 
 	right: 0; 
-	
 	bottom: 0;
-}
 
-.view{
 	@media screen and (min-width: 600px) { top: 64px;  } 
 	@media screen and (max-width: 600px) { top: 56px; } 
 }
 
+
+/* ----- SPLASHSCREEN -----*/
+
+[ng-cloak].splashscreen {
+  display: block !important;
+}
+.splashscreen {
+	display:none;
+	position:absolute;
+	width:100%;
+	height:100%;
+	background: white;
+	color: white;
+}
+.splashscreen h2 {
+	font-weight: 100;
+	color: #3f51b5;
+	font-size: 40px;
+	margin-left: 3%;
+	margin-top: 2%;
+}
+
+
+/* ----- ANIMATION -----*/
+/*
+div[data-ng-view]{
+  &.ng-leave{
+    -webkit-animation: slideOutUp 1s;
+    animation: slideOutUp 1s;
+    .view{
+    	position:relative;
+    }
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+  &.ng-enter{
+    -webkit-animation: slideInDown 1s;
+    animation: slideInDown 1s;
+  }
+}
+*/
